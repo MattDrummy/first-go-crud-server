@@ -34,7 +34,7 @@ func main() {
 	f, _ := os.Create("gin.log")
 	gin.DefaultWriter = io.MultiWriter(f)
 
-	session, err := mgo.Dial(mongodb://<mattdrummy>:<C+master>@ds121955.mlab.com:21955/heroku_qq1g8g1j)
+	session, err := mgo.Dial("localhost")
 	students := session.DB("student").C("students")
 	if err != nil {
 		panic(err)
