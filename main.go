@@ -84,8 +84,8 @@ func main() {
 		})
 	})
 
-	router.DELETE("/delete/:id", func(c *gin.Context) {
-		time, _ := strconv.Atoi(c.Param("id"))
+	router.DELETE("/delete/:time", func(c *gin.Context) {
+		time, _ := strconv.Atoi(c.Param("time"))
 		err := students.Remove(bson.M{"timestamp": time})
 		if err != nil {
 			panic(err)
@@ -148,6 +148,7 @@ func main() {
 
 
   router.GET("/socket.io/", gin.WrapH(server))
+	router.POST("/socket.io/", gin.WrapH(server))
   fmt.Println("server ready")
   router.Run(":7000")
 
