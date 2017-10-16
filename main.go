@@ -122,7 +122,7 @@ func main() {
 		})
 	})
 
-  foo, err := socketio.NewServer(nil)
+  server, err := socketio.NewServer(nil)
   if err != nil {
     log.Fatal(err)
   }
@@ -147,8 +147,7 @@ func main() {
   })
 
 
-  router.GET("/socket.io/", gin.WrapH(foo))
-  router.POST("/socket.io/", gin.WrapH(foo))
+  router.GET("/socket.io/", gin.WrapH(server))
   fmt.Println("server ready")
   router.Run(":7000")
 
