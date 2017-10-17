@@ -56,6 +56,7 @@ func main() {
 	}))  // router.Use(cors.New(config)) // adding cors needs to be done before you add router modes
 
 	router.GET("/all", func(c *gin.Context) {
+		fmt.Println("hitting all route")
 		var data []Student
 		students.Find(nil).All(&data)
 		c.JSON(http.StatusOK, gin.H{
