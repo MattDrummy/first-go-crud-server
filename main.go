@@ -154,6 +154,6 @@ func main() {
   router.GET("/socket.io/", gin.WrapH(server))
 	router.POST("/socket.io/", gin.WrapH(server))
   fmt.Println("server ready")
-  router.Run(os.Getenv("PORT"))
+  router.Run(":" + os.Getenv("PORT"))
 
 }
