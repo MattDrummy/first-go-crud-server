@@ -31,7 +31,7 @@ type Student struct {
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	gin.DisableConsoleColor()
 
@@ -41,7 +41,7 @@ func main() {
 	session, err := mgo.Dial(os.Getenv("MONGOLAB_URI"))
 	students := session.DB("student").C("students")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	router := gin.Default()
@@ -80,7 +80,7 @@ func main() {
 			Timestamp: int32(time.Now().Unix()),
 		})
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 
 		c.JSON(http.StatusOK, gin.H{
@@ -92,7 +92,7 @@ func main() {
 		time, _ := strconv.Atoi(c.Param("time"))
 		err := students.Remove(bson.M{"timestamp": time})
 		if err != nil {
-			panic(err)
+			fmt.Println(err)
 		}
 
 		c.JSON(http.StatusOK, gin.H{
@@ -128,7 +128,7 @@ func main() {
 
   server, err := socketio.NewServer(nil)
   if err != nil {
-    log.Fatal(err)
+    fmt.Println(err)
   }
 
   server.On("connection", func(so socketio.Socket) {
