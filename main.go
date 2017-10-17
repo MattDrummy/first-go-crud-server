@@ -14,7 +14,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
   "github.com/gin-contrib/cors"
   "github.com/googollee/go-socket.io"
-	// "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 )
 
 type Student struct {
@@ -29,10 +29,10 @@ type Student struct {
 }
 
 func main() {
-	// err := godotenv.Load()
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println(err)
+	}
 	gin.DisableConsoleColor()
 
 	f, _ := os.Create("gin.log")
