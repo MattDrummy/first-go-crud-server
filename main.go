@@ -45,6 +45,7 @@ func main() {
 	}
 
 	router := gin.Default()
+	fmt.Println(os.Getenv("SITE_URL"))
   router.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{os.Getenv("SITE_URL")},
 		AllowMethods:     []string{"PUT", "PATCH", "DELETE", "GET"},
