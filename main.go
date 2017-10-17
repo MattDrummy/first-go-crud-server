@@ -40,6 +40,7 @@ func main() {
 
 	session, err := mgo.Dial(os.Getenv("MONGOLAB_URI"))
 	students := session.DB(os.Getenv("DATABASE_NAME")).C("student")
+	fmt.Println("*printing students", students)
 	if err != nil {
 		fmt.Println(err)
 	}
