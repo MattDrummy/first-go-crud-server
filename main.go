@@ -14,6 +14,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
   "github.com/gin-contrib/cors"
   "github.com/googollee/go-socket.io"
+	"github.com/joho/godotenv"
 )
 
 type Student struct {
@@ -28,13 +29,16 @@ type Student struct {
 }
 
 func main() {
-
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
 	gin.DisableConsoleColor()
 
 	f, _ := os.Create("gin.log")
 	gin.DefaultWriter = io.MultiWriter(f)
 
-	session, err := mgo.Dial("localhost")
+	session, err := mgo.Dial(os.Getenv("MONGOLAB_URI"))
 	students := session.DB("student").C("students")
 	if err != nil {
 		panic(err)
@@ -42,7 +46,7 @@ func main() {
 
 	router := gin.Default()
   router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:4200"},
+		AllowOrigins:     []string{os.Getenv("SITE_URL")},
 		AllowMethods:     []string{"PUT", "PATCH", "DELETE", "GET"},
 		AllowHeaders:     []string{"Origin"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -150,6 +154,6 @@ func main() {
   router.GET("/socket.io/", gin.WrapH(server))
 	router.POST("/socket.io/", gin.WrapH(server))
   fmt.Println("server ready")
-  router.Run(":7000")
+  router.Run(os.Getenv("PORT"))
 
 }
