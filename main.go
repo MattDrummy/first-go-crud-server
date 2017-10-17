@@ -39,7 +39,7 @@ func main() {
 	gin.DefaultWriter = io.MultiWriter(f)
 
 	session, err := mgo.Dial(os.Getenv("MONGOLAB_URI"))
-	students := session.DB("student").C("students")
+	students := session.DB(os.Getenv("DATABASE_NAME")).C("student")
 	if err != nil {
 		fmt.Println(err)
 	}
