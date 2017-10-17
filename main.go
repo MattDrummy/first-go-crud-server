@@ -29,10 +29,10 @@ type Student struct {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Println(err)
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 	gin.DisableConsoleColor()
 
 	f, _ := os.Create("gin.log")
