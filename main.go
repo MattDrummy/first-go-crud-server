@@ -14,7 +14,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
   "github.com/gin-contrib/cors"
   "github.com/googollee/go-socket.io"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 )
 
 type Student struct {
